@@ -97,6 +97,7 @@ export function useSurvey({ results, questions }: ISurvey) {
   const reset = () =>
     dispatch({ type: SurveyActionEnum.RESET, payload: questions });
 
+  // eslint-disable-next-line
   useEffect(() => reset(), [questions]);
 
   return {
