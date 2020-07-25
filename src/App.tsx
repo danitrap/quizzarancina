@@ -1,24 +1,58 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import SurveyContainer from "./components/SurveyContainer";
+
+const survey = {
+  title: "Che tipo di arancina sei?",
+  questions: [
+    {
+      title: "Ti piace il burro?",
+      answers: [
+        {
+          text: "Sì",
+          value: 1,
+        },
+        {
+          text: "No",
+          value: 2,
+        },
+        {
+          text: "Forse",
+          value: 3,
+        },
+        {
+          text: "Cos'è?",
+          value: 4,
+        },
+      ],
+    },
+    {
+      title: "Ti piace la carne?",
+      answers: [
+        {
+          text: "Sì",
+          value: 1,
+        },
+        {
+          text: "No",
+          value: 2,
+        },
+        {
+          text: "Forse",
+          value: 3,
+        },
+        {
+          text: "Cos'è?",
+          value: 4,
+        },
+      ],
+    },
+  ],
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <SurveyContainer survey={survey} />
     </div>
   );
 }
