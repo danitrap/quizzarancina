@@ -1,8 +1,8 @@
 import { useReducer, useEffect, useMemo } from "react";
 import {
-  ISurveyQuestion,
   ISurvey,
   ISuerveyResultsTiers,
+  ISurveyQuestion,
 } from "../interfaces/survey.interface";
 import {
   ISurveyState,
@@ -11,16 +11,18 @@ import {
 } from "../interfaces/useSurvey.interface";
 
 const initialState: ISurveyState = {
+  questions: null,
+  currentStep: null,
   stepId: 0,
   result: 0,
   end: false,
-  maxSteps: 0,
 };
 
-function init(maxSteps: number) {
+function init(questions: ISurveyQuestion[]) {
   return {
     ...initialState,
-    maxSteps,
+    questions,
+    currentStep: questions[initialState.stepId],
   };
 }
 
@@ -34,9 +36,10 @@ function surveyReducer(
     case SurveyActionEnum.ANSWER_CHOSEN:
       return {
         ...state,
-        stepId: (state.stepId + 1) % state.maxSteps,
+        stepId: state.stepId + 1,
+        currentStep: state.questions ? state.questions[state.stepId + 1] : null,
         result: state.result + action.payload,
-        end: state.stepId + 1 === state.maxSteps,
+        end: state.stepId + 1 === state.questions?.length,
       };
     default:
       return state;
@@ -44,12 +47,10 @@ function surveyReducer(
 }
 
 export function useSurvey({ results, questions }: ISurvey) {
-  const [{ result, end, stepId }, dispatch] = useReducer(
+  const [{ result, end, currentStep }, dispatch] = useReducer(
     surveyReducer,
     initialState
   );
-
-  const currentStep = questions[stepId];
 
   const { max, min } = useMemo(() => {
     return questions.reduce(
@@ -75,8 +76,8 @@ export function useSurvey({ results, questions }: ISurvey) {
 
   const tier =
     result / ((questions.length / 3) * ((max - min) / questions.length));
-  let score = "";
 
+  let score = "";
   switch (true) {
     case tier <= 1:
       score = "low";
@@ -94,7 +95,7 @@ export function useSurvey({ results, questions }: ISurvey) {
   const computedResult = results[score as keyof ISuerveyResultsTiers];
 
   const reset = () =>
-    dispatch({ type: SurveyActionEnum.RESET, payload: questions.length });
+    dispatch({ type: SurveyActionEnum.RESET, payload: questions });
 
   useEffect(() => reset(), [questions]);
 

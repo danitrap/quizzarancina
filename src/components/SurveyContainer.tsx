@@ -18,12 +18,14 @@ export default function SurveyContainer({ survey }: SurveyContainerProps) {
       <h1 className="mb-3 text-center">{survey.title}</h1>
       {end ? (
         <SurveyResults result={result} reset={reset} />
-      ) : (
+      ) : currentStep ? (
         <SurveyQuestion
           key={currentStep.title}
           question={currentStep}
           dispatch={dispatch}
         />
+      ) : (
+        <span>loading...</span>
       )}
     </>
   );

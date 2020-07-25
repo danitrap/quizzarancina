@@ -1,5 +1,4 @@
-import React, { Dispatch } from "react";
-import { ISurveyQuestion } from "../interfaces/survey.interface";
+import React from "react";
 
 interface ISurveyResultsProps {
   result: string;

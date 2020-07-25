@@ -1,5 +1,8 @@
+import { ISurveyQuestion } from "./survey.interface";
+
 export interface ISurveyState {
-  maxSteps: number;
+  questions: ISurveyQuestion[] | null;
+  currentStep: ISurveyQuestion | null;
   stepId: number;
   result: number;
   end: boolean;
@@ -16,7 +19,7 @@ interface AnswerChosenAction {
 }
 interface ResetAction {
   type: SurveyActionEnum.RESET;
-  payload: number;
+  payload: ISurveyQuestion[];
 }
 
 export type SurveyAction = AnswerChosenAction | ResetAction;
