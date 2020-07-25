@@ -11,13 +11,11 @@ interface SurveyContainerProps {
 }
 
 export default function SurveyContainer({ survey }: SurveyContainerProps) {
-  const { currentStep, result, end, reset, dispatch } = useSurvey(
-    survey.questions
-  );
+  const { currentStep, result, end, reset, dispatch } = useSurvey(survey);
 
   return (
     <>
-      <h1>{survey.title}</h1>
+      <h1 className="mb-3 text-center">{survey.title}</h1>
       {end ? (
         <SurveyResults result={result} reset={reset} />
       ) : (
@@ -27,10 +25,6 @@ export default function SurveyContainer({ survey }: SurveyContainerProps) {
           dispatch={dispatch}
         />
       )}
-      <dl>
-        <dt>result</dt>
-        <dd>{result}</dd>
-      </dl>
     </>
   );
 }
