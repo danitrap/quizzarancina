@@ -23,7 +23,7 @@ export default function SurveyQuestion({
             return (
               <button
                 className="list-group-item list-group-item-action"
-                key={i + answer.value}
+                key={`${question.title}-${i}`}
                 onClick={() =>
                   dispatch({
                     type: SurveyActionEnum.ANSWER_CHOSEN,

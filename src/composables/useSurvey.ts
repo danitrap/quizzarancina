@@ -11,7 +11,7 @@ import {
 } from "../interfaces/useSurvey.interface";
 
 const initialState: ISurveyState = {
-  questions: null,
+  questions: [],
   currentStep: null,
   stepId: 0,
   result: 0,

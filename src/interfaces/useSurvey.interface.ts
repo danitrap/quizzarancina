@@ -1,7 +1,7 @@
 import { ISurveyQuestion } from "./survey.interface";
 
 export interface ISurveyState {
-  questions: ISurveyQuestion[] | null;
+  questions: ISurveyQuestion[];
   currentStep: ISurveyQuestion | null;
   stepId: number;
   result: number;
