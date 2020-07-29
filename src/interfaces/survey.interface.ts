@@ -5,7 +5,7 @@ interface ISurveyAnswer {
 
 export interface ISurveyQuestion {
   title: string;
-  answers: ISurveyAnswer[];
+  answers: [ISurveyAnswer, ISurveyAnswer, ISurveyAnswer];
 }
 
 export interface ISuerveyResultsTiers {
