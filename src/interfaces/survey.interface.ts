@@ -8,7 +8,7 @@ export interface ISurveyQuestion {
   answers: [ISurveyAnswer, ISurveyAnswer, ISurveyAnswer];
 }
 
-export interface ISuerveyResultsTiers {
+export interface ISurveyResultsTiers {
   low: string;
   medium: string;
   high: string;
@@ -17,5 +17,5 @@ export interface ISuerveyResultsTiers {
 export interface ISurvey {
   title: string;
   questions: ISurveyQuestion[];
-  results: ISuerveyResultsTiers;
+  results: ISurveyResultsTiers;
 }

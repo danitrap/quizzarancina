@@ -1,7 +1,7 @@
 import { useReducer, useEffect, useMemo } from "react";
 import {
   ISurvey,
-  ISuerveyResultsTiers,
+  ISurveyResultsTiers,
   ISurveyQuestion,
 } from "../interfaces/survey.interface";
 import {
@@ -77,7 +77,7 @@ export function useSurvey({ results, questions }: ISurvey) {
   const tier =
     result / ((questions.length / 3) * ((max - min) / questions.length));
 
-  let score = "";
+  let score: keyof ISurveyResultsTiers = "low";
   switch (true) {
     case tier <= 1:
       score = "low";
@@ -92,7 +92,7 @@ export function useSurvey({ results, questions }: ISurvey) {
       throw new Error();
   }
 
-  const computedResult = results[score as keyof ISuerveyResultsTiers];
+  const computedResult = results[score];
 
   const reset = () =>
     dispatch({ type: SurveyActionEnum.RESET, payload: questions });
